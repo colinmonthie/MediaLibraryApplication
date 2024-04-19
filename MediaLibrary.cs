@@ -1,16 +1,21 @@
 ﻿using System.Text.Json;
 
 public class MediaLibrary {
+    #region Fields
     private List<Track> tracks;
     private List<Podcast> podcasts;
     private List<AudioBook> audioBooks;
+    #endregion
 
+    #region Constructors
     public MediaLibrary(List<Track> tracks, List<Podcast> podcasts, List<AudioBook> audioBooks) {
         Tracks = tracks;
         Podcasts = podcasts;
         AudioBooks = audioBooks;
     }
+    #endregion
 
+    #region Methods
     public static MediaLibrary LoadLibrary() {
         var options = new JsonSerializerOptions {
             PropertyNameCaseInsensitive = true,
@@ -175,7 +180,6 @@ public class MediaLibrary {
                     int duration = int.Parse(DisplayFunctions.DisplayPromptResponse($"Enter '{title}'s duration (>0)"));
                     double rating1 = double.Parse(DisplayFunctions.DisplayPromptResponse($"Enter '{title}' rating (0-5)"));
                     Track newTrack = new(title, artist, album, year, duration, rating1);
-                    tracks.Add(newTrack);
                 } catch {
                     DisplayFunctions.DisplayError("Invalid Track syntax");
                     break;
@@ -248,18 +252,18 @@ public class MediaLibrary {
                 }
 
                 for (int i = 0; i < podcasts.Count; i++) {
-                    if (podcasts[i].Title == title) {
+                    if (podcasts[i].Title.Equals(title, StringComparison.CurrentCultureIgnoreCase)) {
                         podcasts.Remove(podcasts[i]);
                         mediaFound = true;
                     }
                 }
 
                 DisplayFunctions.ClearConsole();
-                if (mediaFound) {
-                    Console.WriteLine($"{title} was successfully removed from the Podcasts library");
-                } else {
+                if (mediaFound == false) {
                     DisplayFunctions.DisplayError($"{title} was not found in the Podcasts library");
-                }
+                } else {
+                    Console.WriteLine($"{title} was successfully removed from the Podcasts library");
+            }
             break;
             case "audiobooks":
                 title = DisplayFunctions.DisplayPromptResponse("Enter AudioBook title");
@@ -271,14 +275,15 @@ public class MediaLibrary {
                 for (int i = 0; i < audioBooks.Count; i++) {
                     if (audioBooks[i].Title.Contains(title)) {
                         audioBooks.Remove(audioBooks[i]);
+                        mediaFound = true;
                     }
                 }
 
                 DisplayFunctions.ClearConsole();
-                if (mediaFound) {
-                    Console.WriteLine($"{title} was successfully removed from the AudioBook library");
-                } else {
+                if (mediaFound == false) {
                     DisplayFunctions.DisplayError($"{title} was not found in the AudioBook library");
+                } else {
+                    Console.WriteLine($"{title} was successfully removed from the AudioBook library");
                 }
                 break;
             default:
@@ -447,7 +452,9 @@ public class MediaLibrary {
                 break;
         }
     }
+    #endregion
 
+    #region Properties
     public List<Track> Tracks {
         get => tracks;
         set {
@@ -466,4 +473,5 @@ public class MediaLibrary {
             audioBooks = value;
         }
     }
-} 
+    #endregion
+}

@@ -1,10 +1,13 @@
 ﻿public class Podcast {
+    #region Fields
     private string title;
     private string creator;
     private int year;
     private int duration;
     private int rating;
+    #endregion
 
+    #region Constructors
     public Podcast(string title, string creator, int year, int duration, int rating) {
         Title = title;
         Creator = creator;
@@ -12,11 +15,15 @@
         Duration = duration;
         Rating = rating;
     }
+    #endregion
 
+    #region Methods
     public override string ToString() {
         return $"> {title} ({year})\t|  {creator}\t|  {duration} Minutes\t|  {rating} Stars";
     }
+    #endregion
 
+    #region Properties
     public string Title {
         get => title;
         set {
@@ -73,4 +80,5 @@
             }
         }
     }
+    #endregion
 }

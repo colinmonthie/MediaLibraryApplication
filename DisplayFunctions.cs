@@ -17,9 +17,8 @@
         Console.WriteLine("- help: Prints help menu");
         Console.WriteLine("- print: Prints all media entries");
         Console.WriteLine("- print {mediaType}: Prints specific media entries");
-        Console.WriteLine("- print {mediaType, sortingType}: Prints specific sorted media entries");
         Console.WriteLine("- print {mediaType, sortingType, propertyType}: Prints specific sorted media property entries");
-        Console.WriteLine("- search {propertyValue}: Search all media entries matching substring");
+        Console.WriteLine("- search {propertyType} {propertyValue}: Search all media entries matching substring");
         Console.WriteLine("- add {mediaType}: Prompts user to add an entry to the media library");
         Console.WriteLine("- remove {mediaType}: Prompts user to remove an entry from the media library");
         Console.WriteLine("- quit: Exits the program");
@@ -32,9 +31,5 @@
         string response = Console.ReadLine();
         ClearConsole();
         return response;
-    }
-
-    public static void CreateTrack(MediaLibrary mediaLibrary) {
-
     }
 }

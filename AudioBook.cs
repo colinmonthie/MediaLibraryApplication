@@ -1,10 +1,13 @@
 ﻿public class AudioBook {
+    #region Fields
     private string title;
     private string artist;
     private int year;
     private int duration;
     private int rating;
+    #endregion
 
+    #region Constructors
     public AudioBook(string title, string artist, int year, int duration, int rating) {
         Title = title;
         Artist = artist;
@@ -12,11 +15,15 @@
         Duration = duration;
         Rating = rating;
     }
+    #endregion
 
+    #region Methods
     public override string ToString() {
         return $"> {title} ({year})\t|  {artist}\t|  {duration} Minutes\t|  {rating} Stars";
     }
+    #endregion
 
+    #region Properties
     public string Title {
         get => title;
         set {
@@ -73,4 +80,5 @@
             }
         }
     }
+    #endregion
 }

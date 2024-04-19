@@ -1,11 +1,14 @@
 ﻿public class Track {
+    #region Fields
     private string title;
     private string artist;
     private string album;
     private int year;
     private int duration;
     private double rating;
+    #endregion
 
+    #region Constructors
     public Track(string title, string artist, string album, int year, int duration, double rating) {
         Title = title;
         Artist = artist;
@@ -14,11 +17,15 @@
         Duration = duration;
         Rating = rating;
     }
+    #endregion
 
+    #region Methods
     public override string ToString() {
         return $"> {title} ({year})\t|  {artist}\t|  {album}\t|  {duration} Minutes\t|  {rating} Stars";
     }
+    #endregion
 
+    #region Properties
     public string Title {
         get => title;
         set {
@@ -85,4 +92,5 @@
             }
         }
     }
+    #endregion
 }
